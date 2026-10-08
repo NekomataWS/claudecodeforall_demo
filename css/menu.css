@@ -1,0 +1,146 @@
+/* ============================================================
+   Mind Cafe — menu.html Specific Styles
+   ============================================================ */
+
+.menu-section { padding-top: var(--space-2xl); }
+
+/* ---- Filter Bar ---- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 10px var(--space-lg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  letter-spacing: 0.03em;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.filter-btn.active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: var(--bg-primary);
+  font-weight: 600;
+}
+
+/* ---- Menu Grid ---- */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  transition: opacity var(--duration-fast) var(--ease-out);
+  min-height: 200px;
+}
+
+.menu-grid.filtering { opacity: 0.3; pointer-events: none; }
+
+.menu-card.hidden { display: none; }
+
+.menu-empty {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+/* Category divider label above grid */
+.menu-category-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  padding-block: var(--space-xl) var(--space-md);
+}
+
+@media (max-width: 480px) {
+  .menu-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Clear Favourites ---- */
+
+.favourites-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-lg);
+  margin-top: calc(var(--space-lg) * -1);
+}
+
+/* ---- Bookmark Button ---- */
+
+.menu-card__image { position: relative; }
+
+.menu-card__bookmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(12, 12, 12, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out);
+  z-index: 1;
+}
+
+.menu-card__bookmark:hover {
+  color: var(--accent-gold);
+  background: rgba(12, 12, 12, 0.85);
+}
+
+.menu-card__bookmark.is-saved {
+  color: var(--accent-gold);
+  background: rgba(200, 169, 126, 0.18);
+  border-color: rgba(200, 169, 126, 0.35);
+}
+
+.menu-card__bookmark svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: fill var(--duration-fast) var(--ease-out);
+}
+
+.menu-card__bookmark.is-saved svg path {
+  fill: currentColor;
+}
+
+@keyframes bookmark-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); }
+  70%  { transform: scale(0.88); }
+  100% { transform: scale(1); }
+}
+
+.menu-card__bookmark.is-popping {
+  animation: bookmark-pop 0.28s var(--ease-out) forwards;
+}

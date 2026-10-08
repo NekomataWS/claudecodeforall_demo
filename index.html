@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mind Cafe — Where every sip stills the mind. A premium specialty coffee cafe offering single-origin espresso, cold brew, and a curated menu in a dark, intimate atmosphere.">
+  <title>Mind Cafe — Where every sip stills the mind</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+ 
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mind Cafe home">
+        <span class="navbar__logo-name">Mind Cafe</span>
+        <span class="navbar__logo-tagline">Specialty Coffee</span>
+      </a>
+
+      <ul class="navbar__links" role="list">
+        <li><a href="#about"         class="navbar__link" data-section="about">About</a></li>
+        <li><a href="#menu-preview"  class="navbar__link" data-section="menu-preview">Menu</a></li>
+        <li><a href="#gallery-preview" class="navbar__link" data-section="gallery-preview">Gallery</a></li>
+        <li><a href="#location"      class="navbar__link" data-section="location">Location</a></li>
+        <li>
+          <a href="checkout.html" class="navbar__cart-btn" aria-label="View cart">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span class="navbar__cart-badge" id="cart-badge" hidden>0</span>
+          </a>
+        </li>
+        <li class="navbar__cta">
+          <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+        </li>
+      </ul>
+
+      <button class="navbar__hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero__bg">
+        <img
+          src="https://picsum.photos/seed/mindcafe-hero/1920/1080"
+          alt="Dark, moody coffee shop atmosphere"
+          fetchpriority="high"
+        >
+      </div>
+
+      <div class="hero__content">
+        <span class="hero__eyebrow hero-anim-1">Est. 2024 · Melbourne</span>
+        <h1 class="hero__title hero-anim-2">Mind<br><span>Cafe</span></h1>
+        <p class="hero__tagline hero-anim-3">Where every sip stills the mind.</p>
+        <div class="hero__cta hero-anim-4">
+          <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+          <a href="menu.html"        class="btn btn--outline">View Menu</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-arrow">
+          <div class="hero__scroll-dot"></div>
+        </div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+    ============================================================ -->
+    <section class="about section" id="about" aria-label="About Mind Cafe">
+      <div class="container">
+        <div class="about__inner">
+
+          <div class="about__text">
+            <span class="section-label reveal">Our Story</span>
+            <h2 class="section-title reveal" data-delay="1">A cafe born from<br>stillness.</h2>
+            <div class="divider reveal" data-delay="2"></div>
+            <p class="reveal" data-delay="2">
+              Mind Cafe was founded on a simple belief — that a great cup of coffee is more than a drink. It's a pause. A moment of clarity in the noise of the everyday.
+            </p>
+            <p class="reveal" data-delay="3">
+              We source single-origin beans from small farms across Ethiopia, Colombia, and Guatemala, roasted in-house every week. Every cup is dialled in with intention — not routine.
+            </p>
+            <p class="reveal" data-delay="3">
+              Our space is deliberately dark, quiet, and unhurried. Come as you are. Stay as long as you need.
+            </p>
+
+            <div class="about__stats reveal" data-delay="4">
+              <div>
+                <div class="about__stat-number">6+</div>
+                <div class="about__stat-label">Origins Sourced</div>
+              </div>
+              <div>
+                <div class="about__stat-number">3</div>
+                <div class="about__stat-label">In-house Roasters</div>
+              </div>
+              <div>
+                <div class="about__stat-number">4★</div>
+                <div class="about__stat-label">Avg. Rating</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about__image reveal" data-from="right" data-delay="2">
+            <img src="https://picsum.photos/seed/mindcafe-about/600/750" alt="Barista preparing a pour-over coffee">
+            <div class="about__image-badge">
+              <strong>Hand-crafted</strong>
+              <span>Every. Single. Cup.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURED MENU
+    ============================================================ -->
+    <section class="featured-menu section" id="menu-preview" aria-label="Featured menu items">
+      <div class="container">
+        <span class="section-label reveal text-center" style="display:block;">Our Menu</span>
+        <h2 class="section-title text-center reveal" data-delay="1">House Favourites</h2>
+        <p class="section-subtitle text-center reveal" data-delay="2">A selection of our most loved drinks, crafted with precision and care.</p>
+
+        <div class="featured-grid" style="margin-top: var(--space-2xl);">
+
+          <article class="menu-card reveal" data-delay="1">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/flatwhite/400/300" alt="Flat White" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Flat White</h3>
+              <p class="menu-card__desc">Velvety microfoam over a double ristretto. The benchmark espresso drink — nothing hidden, nothing extra.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Espresso</span>
+                <span class="menu-card__price">$5.50</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-delay="2">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/nitrobrew/400/300" alt="Nitro Cold Brew" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Nitro Cold Brew</h3>
+              <p class="menu-card__desc">18-hour cold-steeped, nitrogen-infused. Silky, creamy, no milk needed.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Cold Brew</span>
+                <span class="menu-card__price">$7.00</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-delay="3">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/matchalatte/400/300" alt="Matcha Latte" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Matcha Latte</h3>
+              <p class="menu-card__desc">Ceremonial-grade Japanese matcha, oat milk, a touch of honey. Earthy, smooth, grounding.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Non-Coffee</span>
+                <span class="menu-card__price">$6.50</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="text-center" style="margin-top: var(--space-xl);">
+          <a href="menu.html" class="btn btn--outline reveal">Explore Full Menu &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         GALLERY PREVIEW
+    ============================================================ -->
+    <section class="gallery-preview section" id="gallery-preview" aria-label="Gallery preview">
+      <div class="container">
+        <span class="section-label reveal" style="display:block; text-align:center;">Gallery</span>
+        <h2 class="section-title text-center reveal" data-delay="1">The Atmosphere</h2>
+        <p class="section-subtitle text-center reveal" data-delay="2">Quiet corners, warm light, and the slow ritual of coffee.</p>
+
+        <div class="gallery-preview-grid reveal" data-delay="2" style="margin-top: var(--space-2xl);">
+          <div class="gallery-thumb">
+            <img src="https://picsum.photos/seed/cafe-interior1/600/800" alt="Cafe interior — warm ambient lighting" loading="lazy">
+          </div>
+          <div class="gallery-thumb">
+            <img src="https://picsum.photos/seed/cafe-bar/600/400" alt="Espresso bar with barista" loading="lazy">
+          </div>
+          <div class="gallery-thumb">
+            <img src="https://picsum.photos/seed/cafe-cup1/600/400" alt="Latte art close-up" loading="lazy">
+          </div>
+          <div class="gallery-thumb">
+            <img src="https://picsum.photos/seed/cafe-window/600/400" alt="Window seat with morning light" loading="lazy">
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-top: var(--space-xl);">
+          <a href="gallery.html" class="btn btn--ghost reveal">View All Photos &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LOCATION
+    ============================================================ -->
+    <section class="location section" id="location" aria-label="Location and contact">
+      <div class="container">
+        <div class="location__inner">
+
+          <div class="location__info">
+            <span class="section-label reveal">Find Us</span>
+            <h2 class="section-title reveal" data-delay="1">Come &amp; Stay Awhile</h2>
+            <div class="divider reveal" data-delay="2"></div>
+
+            <div class="location__detail reveal" data-delay="2">
+              <div class="location__detail-icon">📍</div>
+              <div>
+                <div class="location__detail-title">Address</div>
+                <div class="location__detail-value">
+                  123 Stillwater Lane<br>
+                  Melbourne VIC 3000, Australia
+                </div>
+              </div>
+            </div>
+
+            <div class="location__detail reveal" data-delay="3">
+              <div class="location__detail-icon">🕐</div>
+              <div>
+                <div class="location__detail-title">Opening Hours</div>
+                <table class="hours-table">
+                  <tr><td>Monday – Friday</td><td>7:30 AM – 9:30 PM</td></tr>
+                  <tr><td>Saturday</td><td>8:00 AM – 10:00 PM</td></tr>
+                  <tr><td>Sunday</td><td>8:00 AM – 8:00 PM</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="location__detail reveal" data-delay="4">
+              <div class="location__detail-icon">📞</div>
+              <div>
+                <div class="location__detail-title">Contact</div>
+                <div class="location__detail-value">
+                  <a href="tel:+61399990000" style="color:inherit;">+61 3 9999 0000</a><br>
+                  <a href="mailto:hello@mindcafe.com.au" style="color:var(--accent-gold);">hello@mindcafe.com.au</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal" data-delay="4" style="margin-top: var(--space-xl);">
+              <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+            </div>
+          </div>
+
+          <div class="map-wrapper reveal" data-from="right" data-delay="2">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093085!2d144.95373631531978!3d-37.81621997975159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sMelbourne%20CBD%2C%20VIC%203000!5e0!3m2!1sen!2sau!4v1635000000000!5m2!1sen!2sau"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mind Cafe location on Google Maps"
+            ></iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div>
+          <div class="footer__brand-name">Mind Cafe</div>
+          <p class="footer__brand-tagline">Where every sip stills the mind. Specialty coffee, carefully sourced, intentionally brewed.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Instagram">Ig</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">Fb</a>
+            <a href="#" class="footer__social-link" aria-label="TikTok">Tk</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Navigate</div>
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="index.html#about"        class="footer__nav-link">About</a>
+            <a href="menu.html"               class="footer__nav-link">Menu</a>
+            <a href="gallery.html"            class="footer__nav-link">Gallery</a>
+            <a href="reservation.html"        class="footer__nav-link">Reservations</a>
+            <a href="index.html#location"     class="footer__nav-link">Location</a>
+          </nav>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Contact &amp; Hours</div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">📍</span>
+            <span>123 Stillwater Lane, Melbourne VIC 3000</span>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">📞</span>
+            <a href="tel:+61399990000" style="color:inherit;">+61 3 9999 0000</a>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">✉</span>
+            <a href="mailto:hello@mindcafe.com.au" style="color:var(--accent-gold);">hello@mindcafe.com.au</a>
+          </div>
+          <div class="footer__hours">
+            <div class="footer__hours-row"><span>Mon – Fri</span><span>7:30 AM – 9:30 PM</span></div>
+            <div class="footer__hours-row"><span>Saturday</span><span>8:00 AM – 10:00 PM</span></div>
+            <div class="footer__hours-row"><span>Sunday</span><span>8:00 AM – 8:00 PM</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2024 <span>Mind Cafe</span>. All rights reserved.</p>
+        <p class="footer__copy">Crafted with intention.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

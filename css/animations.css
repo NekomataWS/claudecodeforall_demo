@@ -1,0 +1,94 @@
+/* ============================================================
+   Mind Cafe — Animations & Scroll Reveal
+   ============================================================ */
+
+/* ---- Scroll Reveal Base ---- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s var(--ease-out),
+              transform 0.65s var(--ease-out);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional variants */
+.reveal[data-from="left"]  { transform: translateX(-48px); }
+.reveal[data-from="right"] { transform: translateX(48px); }
+.reveal[data-from="scale"] { transform: scale(0.9); opacity: 0; }
+.reveal[data-from="fade"]  { transform: none; opacity: 0; }
+
+.reveal[data-from="left"].revealed,
+.reveal[data-from="right"].revealed {
+  transform: translateX(0);
+}
+
+.reveal[data-from="scale"].revealed { transform: scale(1); }
+.reveal[data-from="fade"].revealed  { opacity: 1; }
+
+/* ---- Keyframe Animations ---- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 12px rgba(200, 169, 126, 0.2); }
+  50%       { box-shadow: 0 0 28px rgba(200, 169, 126, 0.45); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(8px); opacity: 0.5; }
+}
+
+/* ---- Utility Animation Classes ---- */
+
+.anim-fade-in {
+  animation: fadeIn var(--duration-base) var(--ease-out) both;
+}
+
+.anim-fade-in-up {
+  animation: fadeInUp 0.6s var(--ease-out) both;
+}
+
+.anim-scale-in {
+  animation: scaleIn 0.4s var(--ease-out) both;
+}
+
+/* Hero entrance animations */
+.hero-anim-1 { animation: fadeInUp 0.8s var(--ease-out) 0.1s both; }
+.hero-anim-2 { animation: fadeInUp 0.8s var(--ease-out) 0.25s both; }
+.hero-anim-3 { animation: fadeInUp 0.8s var(--ease-out) 0.4s both; }
+.hero-anim-4 { animation: fadeInUp 0.8s var(--ease-out) 0.55s both; }

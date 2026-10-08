@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Environment — contains no real secrets now, but keep out of git as a habit
+.env
+
+# SQLite database (runtime data, not source)
+data/
+
+# Scratchpad / temp scripts
+*.tmp

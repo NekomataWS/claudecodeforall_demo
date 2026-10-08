@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reserve a table at Mind Cafe Melbourne. Book online in seconds.">
+  <title>Reservations — Mind Cafe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/reservation.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mind Cafe home">
+        <span class="navbar__logo-name">Mind Cafe</span>
+        <span class="navbar__logo-tagline">Specialty Coffee</span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html#about"    class="navbar__link">About</a></li>
+        <li><a href="menu.html"           class="navbar__link">Menu</a></li>
+        <li><a href="gallery.html"        class="navbar__link">Gallery</a></li>
+        <li><a href="index.html#location" class="navbar__link">Location</a></li>
+        <li>
+          <a href="checkout.html" class="navbar__cart-btn" aria-label="View cart">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span class="navbar__cart-badge" id="cart-badge" hidden>0</span>
+          </a>
+        </li>
+        <li class="navbar__cta">
+          <a href="reservation.html" class="btn btn--primary navbar__link--active" style="pointer-events:none; opacity:0.8;">Reserve a Table</a>
+        </li>
+      </ul>
+      <button class="navbar__hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Reservation page header">
+      <span class="section-label">Book Your Spot</span>
+      <h1>Reserve a Table</h1>
+      <p>Secure your space in the stillness.</p>
+    </section>
+
+    <!-- RESERVATION SECTION -->
+    <section class="reservation-section section" aria-label="Reservation form">
+      <div class="container">
+        <div class="reservation-layout">
+
+          <!-- ---- FORM ---- -->
+          <div>
+            <form class="reservation-form reveal" id="reservation-form" novalidate aria-label="Table reservation form">
+
+              <h2 class="form-title">Make a Reservation</h2>
+              <p class="form-subtitle">All fields marked <span style="color:var(--accent-gold);">*</span> are required.</p>
+
+              <div class="field-group">
+                <label for="name">Full Name <span class="required-mark" aria-label="required">*</span></label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  minlength="2"
+                  autocomplete="name"
+                  placeholder="e.g. Jane Smith"
+                  aria-describedby="name-error"
+                >
+                <span class="field-error" id="name-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="field-group">
+                <label for="email">Email Address <span class="required-mark" aria-label="required">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="e.g. jane@example.com"
+                  aria-describedby="email-error"
+                >
+                <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="field-group">
+                <label for="phone">Phone Number <span class="required-mark" aria-label="required">*</span></label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  autocomplete="tel"
+                  placeholder="e.g. +61 412 000 000"
+                  aria-describedby="phone-error"
+                >
+                <span class="field-error" id="phone-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="date">Date <span class="required-mark" aria-label="required">*</span></label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    required
+                    aria-describedby="date-error"
+                  >
+                  <span class="field-error" id="date-error" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="field-group">
+                  <label for="time">Time <span class="required-mark" aria-label="required">*</span></label>
+                  <input
+                    type="time"
+                    id="time"
+                    name="time"
+                    required
+                    min="08:00"
+                    max="21:30"
+                    aria-describedby="time-error"
+                  >
+                  <span class="field-error" id="time-error" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="guests">Number of Guests <span class="required-mark" aria-label="required">*</span></label>
+                <select id="guests" name="guests" required aria-describedby="guests-error">
+                  <option value="">Select number of guests…</option>
+                  <option value="1">1 person</option>
+                  <option value="2">2 people</option>
+                  <option value="3">3 people</option>
+                  <option value="4">4 people</option>
+                  <option value="5">5 people</option>
+                  <option value="6">6+ people (large group)</option>
+                </select>
+                <span class="field-error" id="guests-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="field-group">
+                <label for="notes">Special Requests <span style="color:var(--text-muted); font-weight:400;">(optional)</span></label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  rows="4"
+                  placeholder="Dietary requirements, special occasion, seating preferences, accessibility needs…"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full" style="margin-top: var(--space-sm);">
+                Confirm Reservation
+              </button>
+
+              <p style="font-size: var(--text-xs); color: var(--text-muted); text-align:center; margin-top: var(--space-md);">
+                We'll send a confirmation to your email. Tables held for 15 minutes past booking time.
+              </p>
+
+            </form>
+
+            <!-- SUCCESS STATE -->
+            <div class="reservation-success hidden" id="reservation-success" aria-live="polite">
+              <div class="success-icon" aria-hidden="true">&#10003;</div>
+              <h2>You're all set!</h2>
+              <p>We've received your reservation for <strong id="success-name"></strong>.</p>
+              <p>A confirmation will be sent to <strong id="success-email"></strong>.</p>
+              <div class="success-details" id="success-details"></div>
+              <p style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-xl);">
+                Please arrive on time — your table will be held for 15 minutes.
+              </p>
+              <a href="index.html" class="btn btn--outline">Back to Home</a>
+            </div>
+          </div>
+
+          <!-- ---- SIDEBAR INFO ---- -->
+          <aside class="reservation-info reveal" data-from="right" data-delay="2" aria-label="Reservation information">
+
+            <div class="info-block">
+              <h3>Opening Hours</h3>
+              <table class="hours-table" style="width:100%;">
+                <tr><td>Monday – Friday</td><td style="text-align:right; color:var(--text-primary); font-weight:500;">7:30 AM – 9:30 PM</td></tr>
+                <tr><td>Saturday</td><td style="text-align:right; color:var(--text-primary); font-weight:500;">8:00 AM – 10:00 PM</td></tr>
+                <tr><td>Sunday</td><td style="text-align:right; color:var(--text-primary); font-weight:500;">8:00 AM – 8:00 PM</td></tr>
+              </table>
+            </div>
+
+            <div class="info-block">
+              <h3>Location</h3>
+              <address>
+                123 Stillwater Lane<br>
+                Melbourne VIC 3000<br>
+                Australia
+              </address>
+              <p class="policy-note" style="margin-top: var(--space-sm);">
+                <a href="index.html#location" style="color: var(--accent-gold);">View on map &rarr;</a>
+              </p>
+            </div>
+
+            <div class="info-block">
+              <h3>Reservations Policy</h3>
+              <p>Tables are held for <strong style="color: var(--text-primary);">15 minutes</strong> past the booking time. After that, your table may be released.</p>
+              <p class="policy-note">For large group bookings (6+), please call us directly to arrange.</p>
+            </div>
+
+            <div class="info-block">
+              <h3>Get in Touch</h3>
+              <p>
+                <a href="tel:+61399990000" style="color: var(--accent-gold);">+61 3 9999 0000</a><br>
+                <a href="mailto:hello@mindcafe.com.au" style="color: var(--accent-gold);">hello@mindcafe.com.au</a>
+              </p>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">Mind Cafe</div>
+          <p class="footer__brand-tagline">Where every sip stills the mind. Specialty coffee, carefully sourced, intentionally brewed.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Instagram">Ig</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">Fb</a>
+            <a href="#" class="footer__social-link" aria-label="TikTok">Tk</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Navigate</div>
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="index.html#about"    class="footer__nav-link">About</a>
+            <a href="menu.html"           class="footer__nav-link">Menu</a>
+            <a href="gallery.html"        class="footer__nav-link">Gallery</a>
+            <a href="reservation.html"    class="footer__nav-link">Reservations</a>
+            <a href="index.html#location" class="footer__nav-link">Location</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer__col-title">Contact &amp; Hours</div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">📍</span>
+            <span>123 Stillwater Lane, Melbourne VIC 3000</span>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">📞</span>
+            <a href="tel:+61399990000" style="color:inherit;">+61 3 9999 0000</a>
+          </div>
+          <div class="footer__hours">
+            <div class="footer__hours-row"><span>Mon – Fri</span><span>7:30 – 21:30</span></div>
+            <div class="footer__hours-row"><span>Saturday</span><span>8:00 – 22:00</span></div>
+            <div class="footer__hours-row"><span>Sunday</span><span>8:00 – 20:00</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2024 <span>Mind Cafe</span>. All rights reserved.</p>
+        <p class="footer__copy">Crafted with intention.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/reservation.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

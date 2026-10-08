@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Mind Cafe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mind Cafe home">
+        <span class="navbar__logo-name">Mind Cafe</span>
+        <span class="navbar__logo-tagline">Specialty Coffee</span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html#about"    class="navbar__link">About</a></li>
+        <li><a href="menu.html"           class="navbar__link">Menu</a></li>
+        <li><a href="gallery.html"        class="navbar__link">Gallery</a></li>
+        <li><a href="index.html#location" class="navbar__link">Location</a></li>
+        <li>
+          <a href="checkout.html" class="navbar__cart-btn navbar__link--active" aria-label="View cart">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span class="navbar__cart-badge" id="cart-badge" hidden>0</span>
+          </a>
+        </li>
+        <li class="navbar__cta">
+          <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+        </li>
+      </ul>
+      <button class="navbar__hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="page-hero" aria-label="Checkout header">
+      <span class="section-label">Almost There</span>
+      <h1>Your Order</h1>
+    </section>
+
+    <section class="checkout-section section">
+      <div class="container">
+        <div class="checkout-layout">
+
+          <!-- Cart items -->
+          <div class="checkout-card">
+            <h2 class="checkout-card__title">Items</h2>
+            <div id="cart-items-list">
+              <p class="cart-empty">Your cart is empty. <a href="menu.html" style="color:var(--accent-gold)">Browse the menu</a></p>
+            </div>
+          </div>
+
+          <!-- Order summary + CTA -->
+          <aside class="checkout-card" aria-label="Order summary">
+            <h2 class="checkout-card__title">Summary</h2>
+
+            <div id="summary-rows"></div>
+
+            <div class="summary-row summary-row--total">
+              <span>Total</span>
+              <span id="summary-total">$0.00</span>
+            </div>
+
+            <p class="summary-note">Total is calculated server-side and may differ slightly if prices have changed.</p>
+
+            <button class="btn btn--primary btn--full" id="pay-btn" style="margin-top:var(--space-xl)" disabled>
+              Proceed to Payment
+            </button>
+
+            <p id="pay-error" style="color:#e74c3c;font-size:var(--text-xs);margin-top:var(--space-sm);display:none"></p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    (function () {
+      function renderCart() {
+        const cart  = window.MindCart.getCart();
+        const list  = document.getElementById('cart-items-list');
+        const rows  = document.getElementById('summary-rows');
+        const total = document.getElementById('summary-total');
+        const payBtn = document.getElementById('pay-btn');
+
+        if (cart.length === 0) {
+          list.innerHTML = '<p class="cart-empty">Your cart is empty. <a href="menu.html" style="color:var(--accent-gold)">Browse the menu</a></p>';
+          rows.innerHTML = '';
+          total.textContent = '$0.00';
+          payBtn.disabled = true;
+          return;
+        }
+
+        list.innerHTML = cart.map(item => `
+          <div class="cart-item" data-sku="${item.sku}">
+            <span class="cart-item__name">${item.name}</span>
+            <div class="cart-item__qty">
+              <button class="cart-item__qty-btn" data-action="dec" data-sku="${item.sku}" aria-label="Decrease quantity">−</button>
+              <span class="cart-item__qty-num">${item.qty}</span>
+              <button class="cart-item__qty-btn" data-action="inc" data-sku="${item.sku}" aria-label="Increase quantity">+</button>
+            </div>
+            <span class="cart-item__price">${window.MindCart.formatPrice(item.priceUSD * item.qty)}</span>
+            <button class="cart-item__remove" data-sku="${item.sku}" aria-label="Remove ${item.name}">×</button>
+          </div>
+        `).join('');
+
+        rows.innerHTML = cart.map(item =>
+          `<div class="summary-row"><span>${item.name} ×${item.qty}</span><span>${window.MindCart.formatPrice(item.priceUSD * item.qty)}</span></div>`
+        ).join('');
+
+        total.textContent = window.MindCart.formatPrice(window.MindCart.getTotalCents());
+        payBtn.disabled = false;
+
+        // Qty / remove buttons
+        list.querySelectorAll('[data-action]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const sku = btn.dataset.sku;
+            const item = window.MindCart.getCart().find(i => i.sku === sku);
+            if (!item) return;
+            window.MindCart.updateQty(sku, item.qty + (btn.dataset.action === 'inc' ? 1 : -1));
+            renderCart();
+          });
+        });
+        list.querySelectorAll('.cart-item__remove').forEach(btn => {
+          btn.addEventListener('click', () => {
+            window.MindCart.removeFromCart(btn.dataset.sku);
+            renderCart();
+          });
+        });
+      }
+
+      document.getElementById('pay-btn').addEventListener('click', async () => {
+        const cart  = window.MindCart.getCart();
+        const payBtn = document.getElementById('pay-btn');
+        const errEl  = document.getElementById('pay-error');
+
+        payBtn.disabled = true;
+        payBtn.textContent = 'Processing…';
+        errEl.style.display = 'none';
+
+        try {
+          const res  = await fetch('/api/payments/create', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: cart.map(i => ({ sku: i.sku, qty: i.qty })) }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Payment initiation failed');
+
+          // Clear cart before redirect so Back button doesn't re-submit
+          window.MindCart.clearCart();
+          window.location.href = data.paymentUrl;
+        } catch (err) {
+          errEl.textContent = err.message;
+          errEl.style.display = 'block';
+          payBtn.disabled = false;
+          payBtn.textContent = 'Proceed to Payment';
+        }
+      });
+
+      renderCart();
+    })();
+  </script>
+
+</body>
+</html>

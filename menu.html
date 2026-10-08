@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mind Cafe Menu — Explore our espresso drinks, cold brews, non-coffee options, and artisan snacks.">
+  <title>Menu — Mind Cafe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mind Cafe home">
+        <span class="navbar__logo-name">Mind Cafe</span>
+        <span class="navbar__logo-tagline">Specialty Coffee</span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html#about"   class="navbar__link">About</a></li>
+        <li><a href="menu.html"          class="navbar__link navbar__link--active">Menu</a></li>
+        <li><a href="gallery.html"       class="navbar__link">Gallery</a></li>
+        <li><a href="index.html#location" class="navbar__link">Location</a></li>
+        <li>
+          <a href="checkout.html" class="navbar__cart-btn" aria-label="View cart">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span class="navbar__cart-badge" id="cart-badge" hidden>0</span>
+          </a>
+        </li>
+        <li class="navbar__cta">
+          <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+        </li>
+      </ul>
+      <button class="navbar__hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Menu page header">
+      <span class="section-label">What We Brew</span>
+      <h1>Our Menu</h1>
+      <p>Crafted with intention. Sourced with care.</p>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section section" aria-label="Full menu">
+      <div class="container">
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" role="tablist" aria-label="Filter menu by category">
+          <button class="filter-btn active" data-filter="all"        role="tab" aria-selected="true">All</button>
+          <button class="filter-btn"        data-filter="espresso"   role="tab" aria-selected="false">Espresso</button>
+          <button class="filter-btn"        data-filter="cold-brew"  role="tab" aria-selected="false">Cold Brew</button>
+          <button class="filter-btn"        data-filter="non-coffee" role="tab" aria-selected="false">Non-Coffee</button>
+          <button class="filter-btn"        data-filter="snacks"      role="tab" aria-selected="false">Snacks</button>
+          <button class="filter-btn"        data-filter="favourites"  role="tab" aria-selected="false">Favourites</button>
+        </div>
+
+        <!-- Clear Favourites -->
+        <div class="favourites-actions" id="favourites-actions" hidden aria-hidden="true">
+          <button class="btn btn--ghost" id="clear-favourites" type="button">Clear all favourites</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menu-grid">
+
+          <!-- ===== ESPRESSO ===== -->
+          <article class="menu-card reveal" data-category="espresso" data-sku="classic-espresso" data-price="90">
+            <div class="menu-card__image">
+              <img src="img/classic-espresso.png" alt="Classic Espresso" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Classic Espresso</h3>
+              <p class="menu-card__desc">Single origin, 18g dose, 28-second pull. The purest expression of the bean.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Espresso</span>
+                <span class="menu-card__price">฿90</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="espresso" data-delay="1" data-sku="flat-white" data-price="130">
+            <div class="menu-card__image">
+              <img src="img/flat-white.png" alt="Flat White" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Flat White</h3>
+              <p class="menu-card__desc">Velvety microfoam over a double ristretto. The benchmark espresso drink.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Espresso</span>
+                <span class="menu-card__price">฿130</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="espresso" data-delay="2" data-sku="cortado" data-price="110">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/cortado/400/300" alt="Cortado" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Cortado</h3>
+              <p class="menu-card__desc">Equal parts espresso and steamed milk. Bold but balanced.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Espresso</span>
+                <span class="menu-card__price">฿110</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="espresso" data-sku="oat-cappuccino" data-price="140">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/oat-cappuccino/400/300" alt="Oat Cappuccino" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Oat Cappuccino</h3>
+              <p class="menu-card__desc">Classic cappuccino with creamy oat milk. Rich foam, earthy finish.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Espresso</span>
+                <span class="menu-card__price">฿140</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="espresso" data-delay="1" data-sku="lavender-latte" data-price="160">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/lavender-latte/400/300" alt="Signature Lavender Latte" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Lavender Latte</h3>
+              <p class="menu-card__desc">House-made lavender syrup, double espresso, oat milk. Floral and calming.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Espresso</span>
+                <span class="menu-card__price">฿160</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== COLD BREW ===== -->
+          <article class="menu-card reveal" data-category="cold-brew" data-sku="classic-cold-brew" data-price="140">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/cold-brew-classic/400/300" alt="Classic Cold Brew" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Classic Cold Brew</h3>
+              <p class="menu-card__desc">18-hour cold steep. Smooth, low-acidity, naturally sweet. Served over ice.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Cold Brew</span>
+                <span class="menu-card__price">฿140</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="cold-brew" data-delay="1" data-sku="nitro-cold-brew" data-price="160">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/nitro-brew/400/300" alt="Nitro Cold Brew" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Nitro Cold Brew</h3>
+              <p class="menu-card__desc">Nitrogen-infused cold brew on tap. Cascading bubbles, creamy texture, zero milk.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Cold Brew</span>
+                <span class="menu-card__price">฿160</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="cold-brew" data-delay="2" data-sku="cold-brew-tonic" data-price="170">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/coldbrew-tonic/400/300" alt="Cold Brew Tonic" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Cold Brew Tonic</h3>
+              <p class="menu-card__desc">Cold brew over premium tonic water, with a twist of orange peel. Bright and refreshing.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Cold Brew</span>
+                <span class="menu-card__price">฿170</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="cold-brew" data-sku="salted-caramel-cold-brew" data-price="170">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/salted-caramel-brew/400/300" alt="Salted Caramel Cold Brew" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Salted Caramel Cold Brew</h3>
+              <p class="menu-card__desc">Cold brew with house-made salted caramel and oat milk. Indulgent and balanced.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Cold Brew</span>
+                <span class="menu-card__price">฿170</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="cold-brew" data-delay="1" data-sku="cascara-cold-brew" data-price="180">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/cascara-brew/400/300" alt="Cascara Cold Brew" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Cascara Cold Brew</h3>
+              <p class="menu-card__desc">Coffee cherry tea cold-steeped with our cold brew blend. Fruity, complex, surprising.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Cold Brew</span>
+                <span class="menu-card__price">฿180</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== NON-COFFEE ===== -->
+          <article class="menu-card reveal" data-category="non-coffee" data-sku="matcha-latte" data-price="150">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/matcha-menu/400/300" alt="Matcha Latte" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Matcha Latte</h3>
+              <p class="menu-card__desc">Ceremonial-grade Japanese matcha, oat milk, and a drizzle of honey. Earthy and grounding.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Non-Coffee</span>
+                <span class="menu-card__price">฿150</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="non-coffee" data-delay="1" data-sku="hojicha-latte" data-price="150">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/hojicha/400/300" alt="Hojicha Latte" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Hojicha Latte</h3>
+              <p class="menu-card__desc">Roasted Japanese green tea with steamed oat milk. Nutty, toasty, low caffeine.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Non-Coffee</span>
+                <span class="menu-card__price">฿150</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="non-coffee" data-delay="2" data-sku="golden-milk" data-price="140">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/golden-milk/400/300" alt="Turmeric Golden Milk" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Golden Milk</h3>
+              <p class="menu-card__desc">Turmeric, ginger, black pepper, coconut milk. Anti-inflammatory, warming, nourishing.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Non-Coffee</span>
+                <span class="menu-card__price">฿140</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="non-coffee" data-sku="masala-chai" data-price="140">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/masala-chai/400/300" alt="Masala Chai" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Masala Chai</h3>
+              <p class="menu-card__desc">House-blended spices simmered with Assam tea and steamed milk. Warming and aromatic.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Non-Coffee</span>
+                <span class="menu-card__price">฿140</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="non-coffee" data-delay="1" data-sku="pure-cacao" data-price="160">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/pure-cacao/400/300" alt="Pure Cacao" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Pure Cacao</h3>
+              <p class="menu-card__desc">70% dark cacao with steamed oat milk and a pinch of sea salt. Deep, bittersweet, satisfying.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Non-Coffee</span>
+                <span class="menu-card__price">฿160</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===== SNACKS ===== -->
+          <article class="menu-card reveal" data-category="snacks" data-sku="almond-croissant" data-price="120">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/almond-croissant/400/300" alt="Almond Croissant" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Almond Croissant</h3>
+              <p class="menu-card__desc">Twice-baked, filled with frangipane, finished with flaked almonds. Buttery perfection.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Snacks</span>
+                <span class="menu-card__price">฿120</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="snacks" data-delay="1" data-sku="dark-chocolate-tart" data-price="160">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/choc-tart/400/300" alt="Dark Chocolate Tart" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Dark Chocolate Tart</h3>
+              <p class="menu-card__desc">65% Valrhona ganache in an all-butter shell. Rich, silky, unapologetically indulgent.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Snacks</span>
+                <span class="menu-card__price">฿160</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="snacks" data-delay="2" data-sku="banana-bread" data-price="110">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/banana-bread/400/300" alt="Banana Bread" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Banana Bread</h3>
+              <p class="menu-card__desc">House-baked with walnuts and caramelised top. Served warm with whipped butter.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Snacks</span>
+                <span class="menu-card__price">฿110</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="snacks" data-sku="avocado-toast" data-price="280">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/avo-toast/400/300" alt="Avocado Toast" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Avocado Toast</h3>
+              <p class="menu-card__desc">Smashed hass avocado on sourdough, poached egg, dukkah, micro herbs, chilli oil.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Snacks</span>
+                <span class="menu-card__price">฿280</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="snacks" data-delay="1" data-sku="granola-bowl" data-price="220">
+            <div class="menu-card__image">
+              <img src="https://picsum.photos/seed/granola-bowl/400/300" alt="Granola Bowl" loading="lazy">
+            </div>
+            <div class="menu-card__body">
+              <h3 class="menu-card__name">Granola Bowl</h3>
+              <p class="menu-card__desc">House toasted granola, coconut yogurt, seasonal fruit, bee pollen, raw honey.</p>
+              <div class="menu-card__footer">
+                <span class="menu-card__tag">Snacks</span>
+                <span class="menu-card__price">฿220</span>
+                <button class="menu-card__add-btn" type="button">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Empty state -->
+        <p class="menu-empty hidden" id="menu-empty">No items in this category yet.</p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">Mind Cafe</div>
+          <p class="footer__brand-tagline">Where every sip stills the mind. Specialty coffee, carefully sourced, intentionally brewed.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Instagram">Ig</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">Fb</a>
+            <a href="#" class="footer__social-link" aria-label="TikTok">Tk</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Navigate</div>
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="index.html#about"    class="footer__nav-link">About</a>
+            <a href="menu.html"           class="footer__nav-link">Menu</a>
+            <a href="gallery.html"        class="footer__nav-link">Gallery</a>
+            <a href="reservation.html"    class="footer__nav-link">Reservations</a>
+            <a href="index.html#location" class="footer__nav-link">Location</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer__col-title">Contact &amp; Hours</div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">📍</span>
+            <span>123 Stillwater Lane, Melbourne VIC 3000</span>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">📞</span>
+            <a href="tel:+61399990000" style="color:inherit;">+61 3 9999 0000</a>
+          </div>
+          <div class="footer__hours">
+            <div class="footer__hours-row"><span>Mon – Fri</span><span>7:30 – 21:30</span></div>
+            <div class="footer__hours-row"><span>Saturday</span><span>8:00 – 22:00</span></div>
+            <div class="footer__hours-row"><span>Sunday</span><span>8:00 – 20:00</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2024 <span>Mind Cafe</span>. All rights reserved.</p>
+        <p class="footer__copy">Crafted with intention.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/menu-filter.js"></script>
+  <script src="js/favourites.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

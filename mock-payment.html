@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Payment — Mind Cafe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <nav class="navbar navbar--scrolled" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mind Cafe home">
+        <span class="navbar__logo-name">Mind Cafe</span>
+        <span class="navbar__logo-tagline">Specialty Coffee</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top:calc(var(--navbar-height) + var(--space-2xl));text-align:center">
+      <div class="container">
+        <div class="mock-payment-box">
+          <div class="mock-badge">Mock Payment — Development Only</div>
+
+          <div id="loading" class="spinner"></div>
+          <div id="content" hidden>
+            <p style="color:var(--text-muted);font-size:var(--text-sm)">Amount due</p>
+            <div class="mock-amount" id="mock-amount">—</div>
+            <p style="color:var(--text-secondary);font-size:var(--text-sm)" id="mock-invoice"></p>
+
+            <p style="color:var(--text-muted);font-size:var(--text-xs);margin-top:var(--space-lg);line-height:1.8">
+              This is a simulated payment page. No real transaction is processed.<br>
+              Choose an outcome to test the payment flow.
+            </p>
+
+            <div class="mock-actions">
+              <button class="btn btn--primary" id="btn-complete">Complete Payment</button>
+              <button class="btn btn--ghost"   id="btn-cancel">Cancel</button>
+            </div>
+
+            <p id="mock-error" style="color:#e74c3c;font-size:var(--text-xs);margin-top:var(--space-md);display:none"></p>
+          </div>
+          <div id="error-state" hidden style="color:#e74c3c;text-align:center;padding:var(--space-2xl)"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const params  = new URLSearchParams(location.search);
+      const orderId = params.get('orderId');
+
+      const loading    = document.getElementById('loading');
+      const content    = document.getElementById('content');
+      const errorState = document.getElementById('error-state');
+      const mockError  = document.getElementById('mock-error');
+
+      if (!orderId) {
+        loading.hidden = true;
+        errorState.hidden = false;
+        errorState.textContent = 'Missing orderId. Return to the menu and try again.';
+        return;
+      }
+
+      fetch(`/api/payments/${orderId}/status`)
+        .then(r => r.json())
+        .then(order => {
+          loading.hidden = true;
+
+          if (order.status !== 'PENDING') {
+            errorState.hidden = false;
+            errorState.textContent = `This order is already ${order.status}. It cannot be paid again.`;
+            return;
+          }
+
+          document.getElementById('mock-amount').textContent =
+            '฿' + order.amount.toLocaleString('th-TH') + ' THB';
+          document.getElementById('mock-invoice').textContent = order.invoice_no;
+          content.hidden = false;
+        })
+        .catch(() => {
+          loading.hidden = true;
+          errorState.hidden = false;
+          errorState.textContent = 'Could not load order details. Please try again.';
+        });
+
+      async function handleAction(endpoint) {
+        document.getElementById('btn-complete').disabled = true;
+        document.getElementById('btn-cancel').disabled   = true;
+        mockError.style.display = 'none';
+
+        try {
+          const res  = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Request failed');
+          window.location.href = data.redirectUrl;
+        } catch (err) {
+          mockError.textContent = err.message;
+          mockError.style.display = 'block';
+          document.getElementById('btn-complete').disabled = false;
+          document.getElementById('btn-cancel').disabled   = false;
+        }
+      }
+
+      document.getElementById('btn-complete').addEventListener('click', () =>
+        handleAction('/api/payments/mock/complete'));
+      document.getElementById('btn-cancel').addEventListener('click', () =>
+        handleAction('/api/payments/mock/cancel'));
+    })();
+  </script>
+
+</body>
+</html>

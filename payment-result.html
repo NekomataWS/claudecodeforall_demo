@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Result — Mind Cafe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <nav class="navbar navbar--scrolled" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Mind Cafe home">
+        <span class="navbar__logo-name">Mind Cafe</span>
+        <span class="navbar__logo-tagline">Specialty Coffee</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top:calc(var(--navbar-height) + var(--space-2xl));text-align:center">
+      <div class="container" style="max-width:520px">
+
+        <div id="loading" class="spinner" aria-label="Loading payment status"></div>
+
+        <!-- PAID -->
+        <div id="state-paid" hidden>
+          <div class="result-icon">✓</div>
+          <p class="result-status">Payment confirmed</p>
+          <h1 class="result-heading result-heading--paid">Order placed!</h1>
+          <p style="color:var(--text-secondary)">Your order has been received. We'll have it ready for you shortly.</p>
+          <p class="result-invoice" id="invoice-paid"></p>
+          <div class="result-actions">
+            <a href="menu.html" class="btn btn--outline">Back to Menu</a>
+            <a href="index.html" class="btn btn--primary">Go Home</a>
+          </div>
+        </div>
+
+        <!-- PENDING -->
+        <div id="state-pending" hidden>
+          <div class="spinner" style="margin-inline:auto"></div>
+          <p class="result-status" style="margin-top:var(--space-lg)">Waiting for confirmation</p>
+          <h1 class="result-heading result-heading--pending">Processing…</h1>
+          <p style="color:var(--text-secondary)">Your payment is being verified. This page will update automatically.</p>
+          <p class="result-invoice" id="invoice-pending"></p>
+        </div>
+
+        <!-- FAILED -->
+        <div id="state-failed" hidden>
+          <div class="result-icon">✕</div>
+          <p class="result-status">Payment failed</p>
+          <h1 class="result-heading result-heading--failed">Payment declined</h1>
+          <p style="color:var(--text-secondary)">Something went wrong. Please try again or use a different payment method.</p>
+          <p class="result-invoice" id="invoice-failed"></p>
+          <div class="result-actions">
+            <a href="checkout.html" class="btn btn--primary">Try Again</a>
+            <a href="menu.html" class="btn btn--ghost">Back to Menu</a>
+          </div>
+        </div>
+
+        <!-- CANCELLED -->
+        <div id="state-cancelled" hidden>
+          <div class="result-icon" style="color:var(--text-muted)">○</div>
+          <p class="result-status">Cancelled</p>
+          <h1 class="result-heading result-heading--cancel">Order cancelled</h1>
+          <p style="color:var(--text-secondary)">Your order was not placed. You can start a new order any time.</p>
+          <div class="result-actions">
+            <a href="menu.html" class="btn btn--primary">Back to Menu</a>
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        <div id="state-error" hidden style="color:var(--text-secondary)">
+          <h1 class="result-heading" style="color:var(--text-primary)">Unable to load result</h1>
+          <p>We could not retrieve your order status. Please contact the cafe if you're unsure whether payment went through.</p>
+          <div class="result-actions">
+            <a href="menu.html" class="btn btn--outline">Back to Menu</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const params  = new URLSearchParams(location.search);
+      const orderId = params.get('orderId');
+      const loading = document.getElementById('loading');
+
+      function show(stateId) {
+        loading.hidden = true;
+        ['paid', 'pending', 'failed', 'cancelled', 'error'].forEach(s => {
+          document.getElementById(`state-${s}`).hidden = (s !== stateId);
+        });
+      }
+
+      function setInvoice(status, invoice) {
+        const el = document.getElementById(`invoice-${status}`);
+        if (el && invoice) el.textContent = `Invoice: ${invoice}`;
+      }
+
+      if (!orderId) { show('error'); return; }
+
+      let pollTimer;
+
+      function fetchStatus() {
+        fetch(`/api/payments/${orderId}/status`)
+          .then(r => {
+            if (!r.ok) throw new Error('not found');
+            return r.json();
+          })
+          .then(order => {
+            const s = order.status.toLowerCase();
+
+            if (s === 'paid') {
+              clearTimeout(pollTimer);
+              setInvoice('paid', order.invoice_no);
+              show('paid');
+            } else if (s === 'pending') {
+              setInvoice('pending', order.invoice_no);
+              show('pending');
+              // Poll again — backend callback hasn't arrived yet
+              pollTimer = setTimeout(fetchStatus, 3000);
+            } else if (s === 'failed') {
+              clearTimeout(pollTimer);
+              setInvoice('failed', order.invoice_no);
+              show('failed');
+            } else if (s === 'cancelled') {
+              clearTimeout(pollTimer);
+              show('cancelled');
+            } else {
+              show('error');
+            }
+          })
+          .catch(() => show('error'));
+      }
+
+      fetchStatus();
+    })();
+  </script>
+
+</body>
+</html>
