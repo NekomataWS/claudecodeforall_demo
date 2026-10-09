@@ -1,56 +1,64 @@
 /* ============================================================
    Mind Cafe — Design Tokens
+   Style reference: .claude/DESIGN.md (terracotta + cream, flat, serif)
    ============================================================ */
 
 :root {
-  /* --- Backgrounds --- */
-  --bg-primary:      #0a0a0a;
-  --bg-secondary:    #1a1a1a;
-  --bg-tertiary:     #242424;
-  --bg-overlay:      rgba(10, 10, 10, 0.85);
-  --bg-card-hover:   #2a2a2a;
+  /* --- Brand palette --- */
+  --color-corten:    #b84b30;
+  --color-bordeaux:  #5f1d1a;   /* SVG illustration fills only */
+  --color-sandstone: #f8f4e9;
+  --color-driftwood: #e5e7eb;
+  --color-charcoal:  #000000;
+  --color-bone:      #ffffff;
+  --color-smoke:     #666666;
+  --color-ash:       #999999;
+  --color-espresso:  #3e3d3a;
 
-  /* --- Text --- */
-  --text-primary:    #f5f0e8;
-  --text-secondary:  #b8b0a0;
-  --text-muted:      #6b6560;
+  /* --- Semantic aliases (used across all page stylesheets) --- */
+  --bg-primary:      var(--color-sandstone);
+  --bg-secondary:    var(--color-sandstone);
+  --bg-tertiary:     var(--color-sandstone);
+  --bg-overlay:      rgba(62, 61, 58, 0.7);
+  --bg-card-hover:   var(--color-sandstone);
 
-  /* --- Accents --- */
-  --accent-gold:       #c8a97e;
-  --accent-gold-light: #dbbf96;
-  --accent-gold-dark:  #a8865a;
-  --accent-warm:       #8b4513;
+  --text-primary:    var(--color-corten);
+  --text-secondary:  var(--color-smoke);
+  --text-muted:      #767676;
 
-  /* --- Borders --- */
-  --border-subtle:   rgba(200, 169, 126, 0.15);
-  --border-medium:   rgba(200, 169, 126, 0.30);
-  --border-strong:   rgba(200, 169, 126, 0.50);
+  --accent-gold:       var(--color-corten);
+  --accent-gold-light: #9e3f27;
+  --accent-gold-dark:  #9e3f27;
+  --accent-warm:       var(--color-corten);
 
-  /* --- Semantic --- */
-  --success: #4caf6e;
-  --error:   #e05252;
+  --border-subtle:   var(--color-driftwood);
+  --border-medium:   rgba(184, 75, 48, 0.45);
+  --border-strong:   var(--color-corten);
 
-  /* --- Spacing Scale --- */
+  --success: #3f7d4e;
+  --error:   #b3261e;
+
+  /* --- Spacing Scale (4px base) --- */
   --space-xs:  4px;
   --space-sm:  8px;
   --space-md:  16px;
   --space-lg:  24px;
   --space-xl:  40px;
   --space-2xl: 64px;
-  --space-3xl: 96px;
+  --space-3xl: 88px;
 
-  /* --- Border Radii --- */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   16px;
-  --radius-xl:   24px;
-  --radius-pill: 999px;
+  /* --- Border Radii: two-radius system (cards 14px, pills 9999px) --- */
+  --radius-sm:   0;
+  --radius-md:   14px;
+  --radius-lg:   14px;
+  --radius-xl:   14px;
+  --radius-pill: 9999px;
 
-  /* --- Shadows --- */
-  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md:  0 4px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg:  0 8px 48px rgba(0, 0, 0, 0.6);
-  --shadow-gold: 0 0 20px rgba(200, 169, 126, 0.25);
+  /* --- Shadows: none — the system is flat --- */
+  --shadow-sm:   none;
+  --shadow-md:   none;
+  --shadow-lg:   none;
+  --shadow-gold: none;
 
   /* --- Transitions --- */
   --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
@@ -65,19 +73,26 @@
   --z-sticky:    200;
   --z-lightbox:  1000;
 
-  /* --- Typography --- */
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* --- Typography ---
+     Riposte → Playfair Display (substitute); Apercu Mono → JetBrains Mono.
+     Long-form paragraphs use a system serif (DESIGN.md: no Riposte past 2 lines). */
+  --font-display: 'Playfair Display', 'DM Serif Display', Georgia, serif;
+  --font-body:    Georgia, 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* --- Type Scale (fluid) --- */
-  --text-xs:   clamp(0.75rem,  1.5vw,  0.875rem);
-  --text-sm:   clamp(0.875rem, 1.8vw,  1rem);
-  --text-base: clamp(1rem,     2vw,    1.125rem);
-  --text-lg:   clamp(1.125rem, 2.5vw,  1.375rem);
-  --text-xl:   clamp(1.375rem, 3vw,    1.75rem);
-  --text-2xl:  clamp(1.75rem,  4vw,    2.5rem);
-  --text-3xl:  clamp(2.5rem,   6vw,    4rem);
-  --text-hero: clamp(3rem,     8vw,    6.5rem);
+  /* --- Type Scale (36px max display, 24px eyebrow) --- */
+  --text-xs:   0.75rem;                              /* 12px */
+  --text-sm:   0.9375rem;                            /* 15px */
+  --text-base: 1rem;                                 /* 16px */
+  --text-lg:   1.25rem;                              /* 20px */
+  --text-xl:   clamp(1.25rem, 3vw, 1.5rem);          /* 24px */
+  --text-2xl:  clamp(1.5rem, 4vw, 2.25rem);          /* 36px */
+  --text-3xl:  clamp(1.625rem, 4.5vw, 2.25rem);      /* 36px — display headline */
+  --text-hero: clamp(2rem, 5vw, 2.25rem);
+
+  --tracking-label:   0.1em;     /* 2.4px at 24px */
+  --tracking-display: 0.1em;     /* 3.6px at 36px */
+  --tracking-ui:      0.05em;
 
   /* --- Breakpoints (for reference in JS) --- */
   --bp-sm:  480px;
@@ -88,4 +103,6 @@
   /* --- Layout --- */
   --container-max: 1200px;
   --navbar-height: 72px;
+  --section-gap:   80px;
+  --card-padding:  24px;
 }

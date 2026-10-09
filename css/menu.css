@@ -15,28 +15,28 @@
 }
 
 .filter-btn {
-  padding: 10px var(--space-lg);
-  border: 1px solid var(--border-subtle);
+  padding: 12px var(--space-lg);
+  border: 1.5px solid var(--color-driftwood);
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--text-secondary);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-family: var(--font-display);
+  font-size: 12px;
   font-weight: 400;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all var(--duration-base) var(--ease-out);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
 }
 
 .filter-btn:hover {
-  border-color: var(--accent-gold);
-  color: var(--accent-gold);
+  border-color: var(--color-corten);
+  color: var(--color-corten);
 }
 
 .filter-btn.active {
-  background: var(--accent-gold);
-  border-color: var(--accent-gold);
-  color: var(--bg-primary);
+  border-color: var(--color-corten);
+  color: var(--color-corten);
   font-weight: 600;
 }
 
@@ -65,10 +65,11 @@
 
 /* Category divider label above grid */
 .menu-category-label {
+  font-family: var(--font-display);
   font-size: var(--text-xs);
-  letter-spacing: 0.2em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--color-corten);
   padding-block: var(--space-xl) var(--space-md);
 }
 
@@ -96,11 +97,9 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(12, 12, 12, 0.65);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.5);
+  background: var(--color-sandstone);
+  border: 1.5px solid var(--color-corten);
+  color: var(--color-corten);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,14 +110,11 @@
 }
 
 .menu-card__bookmark:hover {
-  color: var(--accent-gold);
-  background: rgba(12, 12, 12, 0.85);
+  opacity: 0.7;
 }
 
 .menu-card__bookmark.is-saved {
-  color: var(--accent-gold);
-  background: rgba(200, 169, 126, 0.18);
-  border-color: rgba(200, 169, 126, 0.35);
+  color: var(--color-corten);
 }
 
 .menu-card__bookmark svg path {

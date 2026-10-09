@@ -42,6 +42,19 @@ Derived from [`CONTEXT.md`](./CONTEXT.md).
 
 ---
 
+## Members
+
+> Stored in Supabase project "Mind Cafe" (`profiles` table, RLS: own row only).
+
+- [x] `register.html` — sign up with name, email, phone, password, marketing opt-in
+- [x] `login.html` — sign in via Supabase Auth
+- [x] `account.html` — view/edit profile, sign out
+- [x] Navbar "Sign In" / "Account" link on all pages (`js/member-nav.js`)
+- [ ] Configure Supabase Auth: Site URL / redirect URLs, email templates (confirmation email is on by default)
+- [ ] Link orders and Favourites to Members
+
+---
+
 ## Payment (2C2P) — Mock Mode
 
 > See `2C2P_COFFEE_PAYMENT_SPEC.md` for full spec.

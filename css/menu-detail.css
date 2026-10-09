@@ -6,9 +6,7 @@
 .detail-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(62, 61, 58, 0.65);
   z-index: 900;
   display: flex;
   align-items: flex-end;
@@ -27,9 +25,9 @@
 /* ---------- Drawer shell ---------- */
 .detail-drawer {
   position: relative;
-  background: #141414;
-  border-top: 1px solid rgba(200, 169, 126, 0.2);
-  border-radius: 20px 20px 0 0;
+  background: var(--color-sandstone);
+  border-top: 1px solid var(--color-driftwood);
+  border-radius: 14px 14px 0 0;
   width: 100%;
   max-width: 640px;
   max-height: 90dvh;
@@ -53,7 +51,7 @@
   width: 36px;
   height: 4px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-driftwood);
   margin: 12px auto 0;
 }
 
@@ -65,9 +63,9 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  color: var(--text-secondary, #a89683);
+  background: var(--color-sandstone);
+  border: 1.5px solid var(--color-corten);
+  color: var(--color-corten);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
@@ -78,10 +76,7 @@
   z-index: 2;
 }
 
-.detail-close:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--text-primary, #f5f0e8);
-}
+.detail-close:hover { opacity: 0.65; }
 
 /* ---------- Image ---------- */
 .detail-image {
@@ -105,40 +100,44 @@
 
 .detail-tag {
   display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--accent, #c8a97e);
-  background: rgba(200, 169, 126, 0.12);
-  padding: 3px 10px;
-  border-radius: 20px;
+  color: var(--color-corten);
+  border: 1px solid var(--color-driftwood);
+  padding: 3px 12px;
+  border-radius: 9999px;
   margin-bottom: 10px;
 }
 
 .detail-name {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 4vw, 1.7rem);
   font-weight: 600;
-  color: var(--text-primary, #f5f0e8);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-corten);
   margin: 0 0 10px;
   line-height: 1.2;
 }
 
 .detail-desc {
-  font-size: 0.875rem;
-  color: var(--text-secondary, #a89683);
+  font-size: 0.9375rem;
+  color: var(--color-smoke);
   line-height: 1.65;
   margin: 0 0 22px;
 }
 
 /* ---------- Section heading ---------- */
 .detail-section-title {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted, #6b5f52);
+  color: var(--color-corten);
   margin: 0 0 10px;
 }
 
@@ -156,8 +155,8 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font-size: 0.875rem;
-  color: var(--text-secondary, #a89683);
+  font-size: 0.9375rem;
+  color: var(--color-smoke);
   line-height: 1.4;
 }
 
@@ -167,17 +166,16 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--accent, #c8a97e);
+  background: var(--color-corten);
   margin-top: 6px;
 }
 
 /* ---------- Notes pill ---------- */
 .detail-notes {
   font-size: 0.78rem;
-  color: var(--text-muted, #6b5f52);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 8px;
+  color: var(--color-smoke);
+  border: 1px solid var(--color-driftwood);
+  border-radius: 14px;
   padding: 9px 14px;
   margin-bottom: 20px;
   line-height: 1.5;
@@ -196,18 +194,19 @@
 }
 
 .detail-allergen-tag {
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: #e8b86d;
-  background: rgba(232, 184, 109, 0.1);
-  border: 1px solid rgba(232, 184, 109, 0.25);
-  border-radius: 20px;
-  padding: 2px 10px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-sandstone);
+  background: var(--color-espresso);
+  border-radius: 9999px;
+  padding: 3px 12px;
 }
 
 .detail-allergen-none {
-  font-size: 0.8rem;
-  color: var(--text-muted, #6b5f52);
+  font-size: 0.85rem;
+  color: var(--color-smoke);
   margin-top: 6px;
 }
 
@@ -218,14 +217,14 @@
   justify-content: space-between;
   gap: 16px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.07);
+  border-top: 1px solid var(--color-driftwood);
 }
 
 .detail-price {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-mono);
+  letter-spacing: -0.025em;
   font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--accent, #c8a97e);
+  color: var(--color-corten);
 }
 
 .detail-add-btn {
@@ -240,8 +239,8 @@
   }
 
   .detail-drawer {
-    border-radius: 16px;
-    border: 1px solid rgba(200, 169, 126, 0.15);
+    border-radius: 14px;
+    border: 1px solid var(--color-driftwood);
     transform: translateY(24px) scale(0.97);
     max-height: 88vh;
   }
@@ -253,6 +252,6 @@
   .detail-image {
     height: 260px;
     margin-top: 0;
-    border-radius: 16px 16px 0 0;
+    border-radius: 0;
   }
 }

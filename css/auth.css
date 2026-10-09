@@ -1,0 +1,54 @@
+/* ============================================================
+   Mind Cafe — Member pages (register / login / account)
+   Field styles are shared with reservation.css
+   ============================================================ */
+
+.auth-section { padding-top: var(--space-2xl); }
+
+.auth-card {
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.auth-switch {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+.auth-switch a { color: var(--accent-gold); }
+
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  cursor: pointer;
+}
+.check-row input { margin-top: 4px; accent-color: var(--color-corten); }
+
+.form-message {
+  font-size: var(--text-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  margin-bottom: var(--space-lg);
+}
+.form-message--error { color: var(--error);   border-color: var(--error); }
+.form-message--ok    { color: var(--success); border-color: var(--success); }
+
+.btn.is-busy { opacity: 0.6; pointer-events: none; }
+
+.account-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+}
+.account-summary dt { color: var(--text-muted); }
+.account-summary dd { color: var(--text-primary); margin: 0; word-break: break-all; }

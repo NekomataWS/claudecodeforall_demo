@@ -25,6 +25,8 @@
 
 .form-title {
   font-size: var(--text-xl);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   margin-bottom: var(--space-sm);
 }
 
@@ -42,10 +44,13 @@
 }
 
 .field-group label {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-corten);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding-left: var(--space-md);
 }
 
 .field-group label .required-mark {
@@ -56,20 +61,21 @@
 .field-group input,
 .field-group select,
 .field-group textarea {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  padding: 12px var(--space-md);
-  font-size: var(--text-sm);
-  transition: border-color var(--duration-fast) var(--ease-out),
-              box-shadow var(--duration-fast) var(--ease-out);
+  background: var(--color-sandstone);
+  border: 1px solid var(--color-driftwood);
+  border-radius: 9999px;
+  color: var(--color-charcoal);
+  padding: 14px var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: -0.025em;
+  transition: border-color var(--duration-fast) var(--ease-out);
   appearance: none;
   -webkit-appearance: none;
 }
 
 .field-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8b0a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b84b30' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
@@ -78,26 +84,26 @@
 
 .field-group input[type="date"],
 .field-group input[type="time"] {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 .field-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
   line-height: 1.6;
+  border-radius: 24px;
 }
 
 .field-group input::placeholder,
 .field-group textarea::placeholder {
-  color: var(--text-muted);
+  color: var(--color-ash);
 }
 
 .field-group input:focus,
 .field-group select:focus,
 .field-group textarea:focus {
   outline: none;
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 0 3px rgba(200, 169, 126, 0.12);
+  border-color: var(--color-corten);
 }
 
 /* Validation states */
@@ -105,7 +111,6 @@
 .field-group--error select,
 .field-group--error textarea {
   border-color: var(--error);
-  box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.1);
 }
 
 .field-group--success input,
@@ -157,8 +162,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba(76, 175, 110, 0.12);
-  border: 2px solid var(--success);
+  border: 1.5px solid var(--success);
   color: var(--success);
   font-size: 2rem;
   display: flex;
@@ -184,9 +188,8 @@
 .success-details {
   margin-block: var(--space-xl);
   padding: var(--space-lg);
-  background: var(--bg-tertiary);
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--color-driftwood);
   font-size: var(--text-sm);
   color: var(--text-secondary);
   line-height: 1.8;
@@ -216,11 +219,12 @@
 }
 
 .info-block h3 {
-  font-size: var(--text-base);
-  color: var(--accent-gold);
-  font-family: var(--font-body);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: var(--text-xs);
+  color: var(--color-corten);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
   margin-bottom: var(--space-md);
 }
 
